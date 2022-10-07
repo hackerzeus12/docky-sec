@@ -337,8 +337,6 @@ if __name__ == '__main__':
 # pm2 delete server
 # pm2 start index.js --name server
 
-
-
 # git clone https://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@github.com/hackerzeus12/docky-sec.git
 
 # docker stop $(docker ps -a -q)
