@@ -6,7 +6,8 @@ from pprint import pprint
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+cors = CORS(app, resources={r"/*": {"origins": ["http://localhost:3000","http://app.dockysec.xyz:3000/"]}})
 
 @app.route('/', methods=['POST'])
 def fixer():

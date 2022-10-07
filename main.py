@@ -326,20 +326,26 @@ if __name__ == '__main__':
     main()
 
 # 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
-# git remote set-url origin https://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@github.com/hackerzeus12/docky-sec.git
+# git remote set-url origin https://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@github.com/hackerzeus12/docky-sec.git
 # git pw : 0fTgtc7gvLPU8tI
 # hackerzeus12@gmail.com
 
-# new - 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
+# new - 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
 # sitharu@dockysec.lk
 
 # pm2 serve build 3000 --name client --spa
 # pm2 delete server
 # pm2 start index.js --name server
 
-# python3 main.py scan --scantype=host --dockerfile=../dockers/CVE-2017-14849-Nodejs/Dockerfile --composefile=../dockers/CVE-2017-1000353-Jenkins/docker-compose.yml
-# python3 main.py fix
 
-# git clone https://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@github.com/hackerzeus12/docky-sec.git
+
+# git clone https://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@github.com/hackerzeus12/docky-sec.git
 
 # docker stop $(docker ps -a -q)
+
+# steps
+# chmod +x init.sh
+# ./init.sh
+
+# python3 main.py scan --scantype=host --dockerfile=../dockers/CVE-2017-14849-Nodejs/Dockerfile --composefile=../dockers/CVE-2017-1000353-Jenkins/docker-compose.yml
+# python3 main.py fix
