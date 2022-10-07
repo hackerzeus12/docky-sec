@@ -3,8 +3,10 @@ from flask import Flask, request, jsonify
 from dockerfile_parse import DockerfileParser
 from colorama import Fore, Style
 from pprint import pprint
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/', methods=['POST'])
 def fixer():
@@ -94,7 +96,7 @@ def fixer():
         print(f"{Fore.GREEN}# Congratulations :) {Style.RESET_ALL}")
         print(f"{Fore.GREEN}# You may close the web server now :) {Style.RESET_ALL}")
         print(f"{Fore.GREEN}# --------------------------------------------------------------------------------------------{Style.RESET_ALL}")
-        
+
         return {"dockerfile":True, "composefile":True}
 
 if __name__ == "__main__":
