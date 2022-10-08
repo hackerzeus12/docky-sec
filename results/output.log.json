@@ -1,0 +1,47 @@
+{"container": [
+    {
+      "id": "Docker Container",
+      "desc": "Description",
+      "results": [
+        {
+          "id": "User",
+          "desc": "dush",
+          "result": "INFO"
+        },
+        {
+          "id": "Groups",
+          "desc": "dush adm dialout cdrom floppy sudo audio dip video plugdev netdev libvirt docker",
+          "result": "INFO"
+        },
+        {
+          "id": "Container ID",
+          "desc": "DESKTOP-1I6NAVP",
+          "result": "INFO"
+        },
+        {
+          "id": "Container Full ID",
+          "desc": "/",
+          "result": "INFO"
+        },
+        {
+          "id": "Dangerous Capabilities",
+          "desc": "",
+          "result": "FAIL"
+        },
+        {
+          "id": "SSHD Service",
+          "desc": "SSHD Service is Dissabled",
+          "result": "PASS"
+        },
+        {
+          "id": "Privileged Mode",
+          "desc": "Enabled",
+          "result": "FAIL"
+        },
+        {
+          "id": "Container tools",
+          "desc": " /usr/bin/docker /snap/bin/lxc  /usr/local/bin/kubectl ",
+          "result": "INFO"
+        }
+      ]
+    }]}

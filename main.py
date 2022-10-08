@@ -326,18 +326,18 @@ if __name__ == '__main__':
     main()
 
 # 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
-# git remote set-url origin https://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@github.com/hackerzeus12/docky-sec.git
+# git remote set-url origin https://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@github.com/hackerzeus12/docky-sec.git
 # git pw : 0fTgtc7gvLPU8tI
 # hackerzeus12@gmail.com
 
-# new - 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
+# new - c
 # sitharu@dockysec.lk
 
 # pm2 serve build 3000 --name client --spa
 # pm2 delete server
 # pm2 start index.js --name server
 
-# git clone https://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@github.com/hackerzeus12/docky-sec.git
+# git clone https://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@github.com/hackerzeus12/docky-sec.git
 
 # docker stop $(docker ps -a -q)
 

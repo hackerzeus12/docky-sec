@@ -125,6 +125,23 @@ unsetColors(){
 
 # checks
 
+
+  if [ -z "$1" ]
+  then
+    echo "No argument supplied"
+    exit
+  fi
+
+  printQuestion "Using Scan Id $1"
+  echo -e "\n"
+
+  file="results/output.log.json"
+
+  if [ -f "$file" ] ; then
+      rm "$file"
+  fi
+
+
 userCheck() {
   scjson
   startsectionjson "Docker Container" "Description"
@@ -245,9 +262,28 @@ containerTools(){
   ejson
 }
 
+sendResult(){
+  if ! command -v curl --version &> /dev/null
+  then
+    echo "curl not found"
+    echo "installing curl"
+    apt install curl
+  fi
+
+STATUS=$(curl -X POST -H 'Content-Type:application/json' -o &> /dev/null -v --data @"./results/output.log.json" "http://app.dockysec.xyz:5000/container-results?id=$1" -w '%{http_code}\n' -s)
+  if [ "$STATUS" != "200" ]; then 
+    printQuestion "Result Sent Successfully"
+    echo -e "\n" 
+  else
+    printQuestion "Something went wrong please try again"
+    echo -e "\n"  
+  fi
+}
+
 userCheck
 containerID
 containerCapabilities
 containerServices
 containerPrivileges
 containerTools
+sendResult $1
