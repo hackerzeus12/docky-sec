@@ -347,3 +347,6 @@ if __name__ == '__main__':
 
 # python3 main.py scan --scantype=host --dockerfile=../dockers/CVE-2017-14849-Nodejs/Dockerfile --composefile=../dockers/CVE-2017-1000353-Jenkins/docker-compose.yml
 # python3 main.py fix
+
+# sudo docker-compose up -d
+#  sudo docker exec -it cve-2017-14849-nodejs_node_1 bash
