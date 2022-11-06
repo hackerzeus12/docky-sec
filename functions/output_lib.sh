@@ -139,7 +139,7 @@ endsectionjson() {
 }
 
 starttestjson() {
-  printf "%s\n        {\n          \"id\": \"%s\",\n          \"desc\": \"%s\",\n          " "$SEP" "$1" "$2" | tee -a "$logger.json" 2>/dev/null 1>&2
+  printf "%s\n        {\n          \"id\": \"%s\",\n          \"desc\": \"%s\",\n          \"remediation\": \"%s\",\n          " "$SEP" "$1" "$2" "$3"  | tee -a "$logger.json" 2>/dev/null 1>&2
   SEP=","
 }
 

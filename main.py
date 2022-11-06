@@ -351,6 +351,6 @@ if __name__ == '__main__':
 # sudo docker-compose up -d
 #  sudo docker exec -it cve-2017-14849-nodejs_node_1 bash
 
-# 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
-# git clone https://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@github.com/hackerzeus12/dockysec-client.git
-# git clone https://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@github.com/hackerzeus12/dockysec-server.git
+# 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
+# git clone https://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@github.com/hackerzeus12/dockysec-client.git
+# git clone https://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@github.com/hackerzeus12/dockysec-server.git

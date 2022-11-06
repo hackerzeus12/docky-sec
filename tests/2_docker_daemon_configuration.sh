@@ -15,7 +15,7 @@ check_2_1() {
   local remediation="Follow the current Dockerdocumentation on how to install the Docker daemon as a non-root user."
   local remediationImpact="There are multiple prerequisites depending on which distribution that is in use, and also known limitations regarding networking and resource limitation. Running in rootless mode also changes the location of any configuration files in use, including all containers using the daemon."
   local check="$id - $desc"
-  starttestjson "$id" "$desc"
+  starttestjson "$id" "$desc" "$remediation"
 
   note -c "$check"
   logcheckresult "INFO"
@@ -27,7 +27,7 @@ check_2_2() {
   local remediation="Edit the Docker daemon configuration file to ensure that inter-container communication is disabled: icc: false."
   local remediationImpact="Inter-container communication is disabled on the default network bridge. If any communication between containers on the same host is desired, it needs to be explicitly defined using container linking or custom networks."
   local check="$id - $desc"
-  starttestjson "$id" "$desc"
+  starttestjson "$id" "$desc" "$remediation"
 
   if get_docker_effective_command_line_args '--icc' | grep false >/dev/null 2>&1; then
     pass -s "$check"
@@ -49,7 +49,7 @@ check_2_3() {
   local remediation="Ensure that the Docker daemon configuration file has the following configuration included log-level: info. Alternatively, run the Docker daemon as following: dockerd --log-level=info"
   local remediationImpact="None."
   local check="$id - $desc"
-  starttestjson "$id" "$desc"
+  starttestjson "$id" "$desc" "$remediation"
 
   if get_docker_configuration_file_args 'log-level' >/dev/null 2>&1; then
     if get_docker_configuration_file_args 'log-level' | grep info >/dev/null 2>&1; then
@@ -86,7 +86,7 @@ check_2_4() {
   local remediation="Do not run the Docker daemon with --iptables=false option."
   local remediationImpact="The Docker daemon service requires iptables rules to be enabled before it starts."
   local check="$id - $desc"
-  starttestjson "$id" "$desc"
+  starttestjson "$id" "$desc" "$remediation"
 
   if get_docker_effective_command_line_args '--iptables' | grep "false" >/dev/null 2>&1; then
     warn -s "$check"
@@ -108,7 +108,7 @@ check_2_5() {
   local remediation="You should ensure that no insecure registries are in use."
   local remediationImpact="None."
   local check="$id - $desc"
-  starttestjson "$id" "$desc"
+  starttestjson "$id" "$desc" "$remediation"
 
   if get_docker_effective_command_line_args '--insecure-registry' | grep "insecure-registry" >/dev/null 2>&1; then
     warn -s "$check"
@@ -135,7 +135,7 @@ check_2_6() {
   local remediation="Do not start Docker daemon as using dockerd --storage-driver aufs option."
   local remediationImpact="aufs is the only storage driver that allows containers to share executable and shared  library memory. Its use should be reviewed in line with your organization's security policy."
   local check="$id - $desc"
-  starttestjson "$id" "$desc"
+  starttestjson "$id" "$desc" "$remediation"
 
   if docker info 2>/dev/null | grep -e "^\sStorage Driver:\s*aufs\s*$" >/dev/null 2>&1; then
     warn -s "$check"
@@ -152,7 +152,7 @@ check_2_7() {
   local remediation="Follow the steps mentioned in the Docker documentation or other references. By default, TLS authentication is not configured."
   local remediationImpact="You would need to manage and guard certificates and keys for the Docker daemon and Docker clients."
   local check="$id - $desc"
-  starttestjson "$id" "$desc"
+  starttestjson "$id" "$desc" "$remediation"
 
   if [ $(grep -E "host.*tcp://" "$CONFIG_FILE") ] || \
     [ $(get_docker_cumulative_command_line_args '-H' | grep -vE '(unix|fd)://') > /dev/null 2>&1 ]; then
@@ -185,7 +185,7 @@ check_2_8() {
   local remediation="Run Docker in daemon mode and pass --default-ulimit as option with respective ulimits as appropriate in your environment and in line with your security policy. Example: dockerd --default-ulimit nproc=1024:2048 --default-ulimit nofile=100:200"
   local remediationImpact="If ulimits are set incorrectly this could cause issues with system resources, possibly causing a denial of service condition."
   local check="$id - $desc"
-  starttestjson "$id" "$desc"
+  starttestjson "$id" "$desc" "$remediation"
 
   if get_docker_configuration_file_args 'default-ulimit' | grep -v '{}' >/dev/null 2>&1; then
     pass -c "$check"
@@ -208,7 +208,7 @@ check_2_9() {
   local remediation="Please consult the Docker documentation for various ways in which this can be configured depending upon your requirements. The high-level steps are: Ensure that the files /etc/subuid and /etc/subgid exist. Start the docker daemon with --userns-remap flag."
   local remediationImpact="User namespace remapping is incompatible with a number of Docker features and also currently breaks some of its functionalities."
   local check="$id - $desc"
-  starttestjson "$id" "$desc"
+  starttestjson "$id" "$desc" "$remediation"
 
   if get_docker_configuration_file_args 'userns-remap' | grep -v '""'; then
     pass -s "$check"
@@ -230,7 +230,7 @@ check_2_10() {
   local remediation="The default setting is in line with good security practice and can be left in situ."
   local remediationImpact="None."
   local check="$id - $desc"
-  starttestjson "$id" "$desc"
+  starttestjson "$id" "$desc" "$remediation"
 
   if get_docker_configuration_file_args 'cgroup-parent' | grep -v ''; then
     warn -s "$check"
@@ -254,7 +254,7 @@ check_2_11() {
   local remediation="Do not set --storage-opt dm.basesize until needed."
   local remediationImpact="None."
   local check="$id - $desc"
-  starttestjson "$id" "$desc"
+  starttestjson "$id" "$desc" "$remediation"
 
   if get_docker_configuration_file_args 'storage-opts' | grep "dm.basesize" >/dev/null 2>&1; then
     warn -s "$check"
@@ -276,7 +276,7 @@ check_2_12() {
   local remediation="Install/Create an authorization plugin. Configure the authorization policy as desired. Start the docker daemon using command dockerd --authorization-plugin=<PLUGIN_ID>"
   local remediationImpact="Each Docker command needs to pass through the authorization plugin mechanism. This may have a performance impact"
   local check="$id - $desc"
-  starttestjson "$id" "$desc"
+  starttestjson "$id" "$desc" "$remediation"
 
   if get_docker_configuration_file_args 'authorization-plugins' | grep -v '\[]'; then
     pass -s "$check"
@@ -298,7 +298,7 @@ check_2_13() {
   local remediation="Set up the desired log driver following its documentation. Start the docker daemon using that logging driver. Example: dockerd --log-driver=syslog --log-opt syslog-address=tcp://192.xxx.xxx.xxx"
   local remediationImpact="None."
   local check="$id - $desc"
-  starttestjson "$id" "$desc"
+  starttestjson "$id" "$desc" "$remediation"
 
   if docker info --format '{{ .LoggingDriver }}' | grep 'json-file' >/dev/null 2>&1; then
     warn -s "$check"
@@ -315,7 +315,7 @@ check_2_14() {
   local remediation="You should run the Docker daemon using command: dockerd --no-new-privileges"
   local remediationImpact="no_new_priv prevents LSMs such as SELinux from escalating the privileges of individual containers."
   local check="$id - $desc"
-  starttestjson "$id" "$desc"
+  starttestjson "$id" "$desc" "$remediation"
 
   if get_docker_effective_command_line_args '--no-new-privileges' | grep "no-new-privileges" >/dev/null 2>&1; then
     pass -s "$check"
@@ -337,7 +337,7 @@ check_2_15() {
   local remediation="Run Docker in daemon mode and pass --live-restore option."
   local remediationImpact="None."
   local check="$id - $desc"
-  starttestjson "$id" "$desc"
+  starttestjson "$id" "$desc" "$remediation"
 
   if docker info 2>/dev/null | grep -e "Live Restore Enabled:\s*true\s*" >/dev/null 2>&1; then
     pass -s "$check"
@@ -364,7 +364,7 @@ check_2_16() {
   local remediation="You should run the Docker daemon using command: dockerd --userland-proxy=false"
   local remediationImpact="Some systems with older Linux kernels may not be able to support hairpin NAT and therefore require the userland proxy service. Also, some networking setups can be impacted by the removal of the userland proxy."
   local check="$id - $desc"
-  starttestjson "$id" "$desc"
+  starttestjson "$id" "$desc" "$remediation"
 
   if get_docker_configuration_file_args 'userland-proxy' | grep false >/dev/null 2>&1; then
     pass -s "$check"
@@ -386,7 +386,7 @@ check_2_17() {
   local remediation="By default, Docker's default seccomp profile is applied. If this is adequate for your environment, no action is necessary."
   local remediationImpact="A misconfigured seccomp profile could possibly interrupt your container environment. You should therefore exercise extreme care if you choose to override the default settings."
   local check="$id - $desc"
-  starttestjson "$id" "$desc"
+  starttestjson "$id" "$desc" "$remediation"
 
   if docker info --format '{{ .SecurityOptions }}' | grep 'name=seccomp,profile=default' 2>/dev/null 1>&2; then
     pass -c "$check"
@@ -406,7 +406,7 @@ check_2_18() {
   local remediation="You should not pass --experimental as a runtime parameter to the Docker daemon on production systems."
   local remediationImpact="None."
   local check="$id - $desc"
-  starttestjson "$id" "$desc"
+  starttestjson "$id" "$desc" "$remediation"
 
   if [ "$docker_version" -le 1903 ]; then
     if docker version -f '{{.Server.Experimental}}' | grep false 2>/dev/null 1>&2; then
