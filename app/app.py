@@ -11,7 +11,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 cors = CORS(app, resources={r"/*": {"origins": ["*"]}})
 
 @app.route('/docker', methods=['POST'])
-def fixer():
+def dockerFixer():
 
     #  curl -X POST http://127.0.0.1:5000/ -H 'Content-Type: application/json' -d '{"dockerfile":{ "fixedVersion":"latest","path":"/home/dush/dockersec/cis/samples/Dockerfile","version":"latest","image":"vulhub/node" }}'
     if request.method == 'POST':
@@ -56,7 +56,7 @@ def fixer():
         return {"dockerfile":True}
 
 @app.route('/compose', methods=['POST'])
-def fixer():
+def composeFixer():
 
     #  curl -X POST http://127.0.0.1:5000/ -H 'Content-Type: application/json' -d '{"dockerfile":{ "fixedVersion":"latest","path":"/home/dush/dockersec/cis/samples/Dockerfile","version":"latest","image":"vulhub/node" }}'
     if request.method == 'POST':
@@ -118,7 +118,7 @@ def fixer():
         return {"composefile":True}        
 
 @app.route('/docker-restore', methods=['POST'])
-def docker():
+def dockerRestore():
 
     if request.method == 'POST':
         content = request.json
@@ -137,7 +137,7 @@ def docker():
         return {"dockerfile":True}
 
 @app.route('/compose-restore', methods=['POST'])
-def compose():
+def composeRestore():
 
     if request.method == 'POST':
         
