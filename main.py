@@ -260,11 +260,10 @@ def container_scan(scanid):
 @click.argument('mode', type=str)
 @click.option('--scantype', type=str, help='Please mention scan type (host/container)')
 @click.option('--scanid', type=str, help='Please mention scan id')
-@click.option('--outfile', type=str, default="sample.txt", help='Output file name')
 @click.option('--dockerfile', type=str, default="./samples/Dockerfile", help='Dockerfile location')
 @click.option('--composefile', type=str, default="./samples/docker-compose3.yml", help='Docker-compose location')
 
-def main(mode,scantype, outfile,dockerfile,composefile,scanid):
+def main(mode,scantype, dockerfile,composefile,scanid):
     print(f"{Fore.GREEN}\n# DockySec v1.0 \n{Style.RESET_ALL}")
 
     if which("nmap") is None:
@@ -295,20 +294,20 @@ def main(mode,scantype, outfile,dockerfile,composefile,scanid):
             scanComposeFile(composefile)
             finish(sid)
             
-        if scantype == "container":
-            if not scanid:
-                print(f"{Fore.RED}[ERROR] Please define scanId{Style.RESET_ALL}")
-                exit() 
-            else:    
-                print(f"{Fore.YELLOW}[DEBUG] Cleaning previous scans {Style.RESET_ALL}")
-                print(f"{Fore.YELLOW}[DEBUG] Using Scan ID {scanid} {Style.RESET_ALL}")
+        # if scantype == "container":
+        #     if not scanid:
+        #         print(f"{Fore.RED}[ERROR] Please define scanId{Style.RESET_ALL}")
+        #         exit() 
+        #     else:    
+        #         print(f"{Fore.YELLOW}[DEBUG] Cleaning previous scans {Style.RESET_ALL}")
+        #         print(f"{Fore.YELLOW}[DEBUG] Using Scan ID {scanid} {Style.RESET_ALL}")
 
-                if os.path.exists("./results/output.log.json"):
-                    os.remove("results/output.log.json")
-                if os.path.exists("results/output.log"):
-                    os.remove("results/output.log")
+        #         if os.path.exists("./results/output.log.json"):
+        #             os.remove("results/output.log.json")
+        #         if os.path.exists("results/output.log"):
+        #             os.remove("results/output.log")
 
-                container_scan(scanid)
+        #         container_scan(scanid)
 
         if not scantype:
             print(f"{Fore.RED}[ERROR] Please define scantype{Style.RESET_ALL}")
@@ -319,7 +318,7 @@ def main(mode,scantype, outfile,dockerfile,composefile,scanid):
         print(f"{Fore.GREEN}# This will fix your vulnerable DockerFiles and ComposeFiles{Style.RESET_ALL}")
         print(f"{Fore.GREEN}# --------------------------------------------------------------------------------------------{Style.RESET_ALL}")
 
-        rc = call("./app/init.sh", shell=True)
+        rc = call("./app/fixer.sh", shell=True)
 
 
 if __name__ == '__main__':
@@ -350,3 +349,7 @@ if __name__ == '__main__':
 
 # sudo docker-compose up -d
 #  sudo docker exec -it cve-2017-14849-nodejs_node_1 bash
+
+# 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
+# git clone https://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@github.com/hackerzeus12/dockysec-client.git
+# git clone https://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@github.com/hackerzeus12/dockysec-server.git
