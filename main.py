@@ -345,6 +345,7 @@ if __name__ == '__main__':
 # ./init.sh
 
 # python3 main.py scan --scantype=host --dockerfile=../dockers/CVE-2017-14849-Nodejs/Dockerfile --composefile=../dockers/CVE-2017-1000353-Jenkins/docker-compose.yml
+# python3 main.py scan --scantype=host --dockerfile=/home/dushyantha_world/dockers/CVE-2017-14849-Nodejs/Dockerfile --composefile=/home/dushyantha_world/dockers/CVE-2017-1000353-Jenkins/docker-compose.yml
 # python3 main.py fix
 
 # sudo docker-compose up -d

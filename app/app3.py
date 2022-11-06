@@ -20,7 +20,7 @@ def scan():
         docker_filepath = content["docker"]
         compose_filepath = content["compose"]
 
-        cmd = "python3 main.py scan --scantype=host --dockerfile=" + docker_filepath + "--composefile=" + compose_filepath
+        cmd = "python3 ../main.py scan --scantype=host --dockerfile=" + docker_filepath + "--composefile=" + compose_filepath
 
         print(f"{Fore.GREEN}\n# --------------------------------------------------------------------------------------------{Style.RESET_ALL}")
         print(f"{Fore.GREEN}# Running Scan {Style.RESET_ALL}")
