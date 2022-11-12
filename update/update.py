@@ -23,7 +23,7 @@ def process(files):
     # filelist = ["./nvdcve-1.1-2017.json","./nvdcve-1.1-2018.json","./nvdcve-1.1-2019.json","./nvdcve-1.1-2020.json","./nvdcve-1.1-2021.json","./nvdcve-1.1-2022.json"]
     for file in files:
         """Open for read"""
-        filepath = "./latest/" + file
+        filepath = "/home/dushyantha_world/docky-sec/update/latest/" + file
         f = open(filepath)
         data = json.load(f)
 
@@ -172,10 +172,10 @@ def main():
 
         meta[key] = value
 
-    # print(json.dumps(meta))
+    print(json.dumps(meta))
 
     # check with local file
-    with open("metadata.json","r") as inp:
+    with open("/home/dushyantha_world/docky-sec/update/metadata.json","r") as inp:
         data = json.load(inp)
 
         localHash = data["sha256"]
@@ -188,7 +188,7 @@ def main():
 
         else:
             print(f"{Fore.YELLOW}[DEBUG] Wow :) We got new vulnerabilities {Style.RESET_ALL}")
-            with open("metadata.json","w+") as out:
+            with open("/home/dushyantha_world/docky-sec/update/metadata.json","w+") as out:
                 out.write(json.dumps(meta))
                 print(f"{Fore.YELLOW}\n[DEBUG] Updating metadata file with latest data {Style.RESET_ALL}")
 
@@ -209,10 +209,10 @@ def main():
             shutil.rmtree('latest')	
             print(f"{Fore.YELLOW}[DEBUG] Removing previous files {Style.RESET_ALL}")
 
-            with zipfile.ZipFile("latest.json.zip", 'r') as zip_ref:
+            with zipfile.ZipFile("/home/dushyantha_world/docky-sec/update/latest.json.zip", 'r') as zip_ref:
                 zip_ref.extractall("latest")
 
-            os.rename("./latest/nvdcve-1.1-modified.json","./latest/modified.json")
+            os.rename("/home/dushyantha_world/docky-sec/update/latest/nvdcve-1.1-modified.json","/home/dushyantha_world/docky-sec/update/latest/modified.json")
             filelist = os.listdir('latest')
 
             print(f"{Fore.YELLOW}[DEBUG] Processing latest data ... Please wait{Style.RESET_ALL}")
@@ -225,7 +225,7 @@ def main():
             db = myclient["test"]
             collection  = db["vulneralabilities"]
 
-            f = open("modified.json")
+            f = open("/home/dushyantha_world/docky-sec/update/modified.json")
             data = json.load(f)
 
             for item in data:

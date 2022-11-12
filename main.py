@@ -325,7 +325,7 @@ if __name__ == '__main__':
     main()
 
 # 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
-# git remote set-url origin https://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@github.com/hackerzeus12/docky-sec.git
+# git remote set-url origin https://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@github.com/hackerzeus12/docky-sec.git
 # git pw : 0fTgtc7gvLPU8tI
 # hackerzeus12@gmail.com
 
@@ -336,7 +336,7 @@ if __name__ == '__main__':
 # pm2 delete server
 # pm2 start index.js --name server
 
-# git clone https://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@github.com/hackerzeus12/docky-sec.git
+# git clone https://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@github.com/hackerzeus12/docky-sec.git
 
 # docker stop $(docker ps -a -q)
 
@@ -351,6 +351,7 @@ if __name__ == '__main__':
 # sudo docker-compose up -d
 #  sudo docker exec -it cve-2017-14849-nodejs_node_1 bash
 
-# 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
-# git clone https://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@github.com/hackerzeus12/dockysec-client.git
-# git clone https://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@github.com/hackerzeus12/dockysec-server.git
+# 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
+# git clone https://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@github.com/hackerzeus12/dockysec-client.git
+# git clone https://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@github.com/hackerzeus12/dockysec-server.git
+# git clone https://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@github.com/hackerzeus12/docky-sec.git
