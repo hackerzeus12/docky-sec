@@ -210,10 +210,10 @@ def main():
             print(f"{Fore.YELLOW}[DEBUG] Removing previous files {Style.RESET_ALL}")
 
             with zipfile.ZipFile("/home/dushyantha_world/docky-sec/update/latest.json.zip", 'r') as zip_ref:
-                zip_ref.extractall("latest")
+                zip_ref.extractall("/home/dushyantha_world/docky-sec/update/latest")
 
             os.rename("/home/dushyantha_world/docky-sec/update/latest/nvdcve-1.1-modified.json","/home/dushyantha_world/docky-sec/update/latest/modified.json")
-            filelist = os.listdir('latest')
+            filelist = os.listdir('/home/dushyantha_world/docky-sec/update/latest')
 
             print(f"{Fore.YELLOW}[DEBUG] Processing latest data ... Please wait{Style.RESET_ALL}")
             process(filelist)
