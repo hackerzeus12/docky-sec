@@ -246,7 +246,7 @@ def container_scan(scanid):
         data = json.loads(logfile.read())
         # print(data)
 
-        url = 'http://app.dockysec.xyz:5000/container-results?id=' + scanid
+        url = 'http://app.dockysec.xyz:5000/host-results?id=' + scanid
         print(f"{Fore.YELLOW}[DEBUG] Sending results to the server {url}{Style.RESET_ALL}")
 
         r = requests.post(url, json=data)
@@ -351,7 +351,7 @@ if __name__ == '__main__':
 # sudo docker-compose up -d
 #  sudo docker exec -it cve-2017-14849-nodejs_node_1 bash
 
-# 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
-# git clone https://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@github.com/hackerzeus12/dockysec-client.git
-# git clone https://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@github.com/hackerzeus12/dockysec-server.git
-# git clone https://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@github.com/hackerzeus12/docky-sec.git
+# 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
+# git clone https://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@github.com/hackerzeus12/dockysec-client.git
+# git clone https://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@github.com/hackerzeus12/dockysec-server.git
+# git clone https://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@github.com/hackerzeus12/docky-sec.git
