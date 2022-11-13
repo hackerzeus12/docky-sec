@@ -128,7 +128,7 @@ def dockerRestore():
 
         print(f"{Fore.GREEN}\n# --------------------------------------------------------------------------------------------{Style.RESET_ALL}")
         os.remove(original_filepath)
-        os.rename(original_filepath,backup_filepath)
+        os.rename(backup_filepath,original_filepath)
      
         print(f"{Fore.GREEN}# Removing original file {Style.RESET_ALL}")
         print(f"{Fore.GREEN}# Backup restored :) {Style.RESET_ALL}")
@@ -148,7 +148,7 @@ def composeRestore():
 
         print(f"{Fore.GREEN}\n# --------------------------------------------------------------------------------------------{Style.RESET_ALL}")
         os.remove(original_filepath)
-        os.rename(original_filepath,backup_filepath)
+        os.rename(backup_filepath,original_filepath)
      
         print(f"{Fore.GREEN}# Removing original file {Style.RESET_ALL}")
         print(f"{Fore.GREEN}# Backup restored :) {Style.RESET_ALL}")
